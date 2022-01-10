@@ -1,0 +1,14 @@
+{
+  "name": "page-to-pdf-to-drive",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/matheusgrandi/page-to-pdf-to-drive.git",
+  "author": "matheusgrandi",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "googleapis": "^39.2.0",
+    "npm-check-updates": "^12.1.0",
+    "uuid": "^8.3.2"
+  }
+}

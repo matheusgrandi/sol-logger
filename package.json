@@ -8,6 +8,7 @@
   "private": false,
   "dependencies": {
     "googleapis": "^39.2.0",
+    "html-pdf-node": "^1.0.8",
     "npm-check-updates": "^12.1.0",
     "uuid": "^8.3.2"
   }

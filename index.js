@@ -1,6 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
 const { google } = require('googleapis');
+var html_to_pdf = require('html-pdf-node');
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/drive.file'];
@@ -83,3 +84,8 @@ fs.readFile('credentials.json', (err, content) => {
   // Authorize a client with credentials, then call the Google Drive API.
   authorize(JSON.parse(content), uploadFile);
 });
+
+let options = { format: 'A4' };
+let file = [{ url: "https://example.com", name: `${osNumber}.pdf` }];
+
+html_to_pdf.generatePdfs(file, options);

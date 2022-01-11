@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="buttons">
-    <button class="button-start" onclick="start()">start</button>  
-    <button class="button-end" onclick="stop()">stop</button>
+    <button class="button-start" onclick="start()">START</button>  
+    <button class="button-end" onclick="stop()">STOP</button>
   </div>
   <div class="infos">
     <div class="status">
@@ -40,6 +40,13 @@
 <style>
   .wrapper {
     display: flex;    
+  }
+  .buttons{
+    display: flex;
+    flex-direction: column;
+  }
+  .status {
+    margin: 10px;
   }
   .button-start {
   background-color: #4CAF50;

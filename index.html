@@ -1,0 +1,70 @@
+<div class="wrapper">
+  <div class="buttons">
+    <button class="button-start" onclick="start()">start</button>  
+    <button class="button-end" onclick="stop()">stop</button>
+  </div>
+  <div class="infos">
+    <div class="status">
+    <p>Status: </p>
+    <p id="status-message">Em andamento</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  var clicked = false;
+
+  function sendData(init, end) {
+    //API SHIT    
+  }
+
+  function start() {
+    if (clicked) {
+      alert('Teste em andamento!')
+    }
+    else {
+    startTime = new Date().getTime();    
+    clicked = true;
+    }
+  }
+
+  function stop() {
+    endTime = new Date().getTime();
+    url = `https://demo.huxx.io/d/h9SVG1p7k/relatorio?orgId=2&from=${startTime}&to=${endTime}`;
+    clicked = false;
+    alert('Teste finalizado');
+  } 
+  
+</script>
+
+<style>
+  .wrapper {
+    display: flex;    
+  }
+  .button-start {
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  padding: 15px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+
+}
+.button-end {
+  background-color: #c92830;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  padding: 15px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+}
+
+</style>

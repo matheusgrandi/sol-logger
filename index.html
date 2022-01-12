@@ -4,9 +4,12 @@
     <button class="button-end" onclick="stop()">STOP</button>
   </div>
   <div class="infos">
+    <div class="input">
+      <input id="os" placeholder="OS number">
+      <input id="equipment" placeholder="Equipment">
+    </div>
     <div class="status">
-    <p>Status: </p>
-    <p id="status-message">Em andamento</p>
+      <p>Status: <span id="status"></span></p>    
     </div>
   </div>
 </div>
@@ -41,7 +44,19 @@
   .wrapper {
     display: flex;    
   }
-  .buttons{
+  .infos {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+  input {
+    display: flex;    
+    margin: 10px;  
+    border: 3px solid #6c0cf2;  
+    border-radius: 30px;
+    
+  }  
+  .buttons {
     display: flex;
     flex-direction: column;
   }

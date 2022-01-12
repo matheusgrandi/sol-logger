@@ -9,13 +9,14 @@
       <input id="equipment" placeholder="Equipment">
     </div>
     <div class="status">
-      <p>Status: <span id="status"></span></p>    
+      <p>Status: <span id="stat"></span></p>    
     </div>
   </div>
 </div>
 
 <script>
   var clicked = false;
+  var info = document.querySelector('#stat')
 
   function sendData(init, end) {
     //API SHIT    
@@ -23,11 +24,12 @@
 
   function start() {
     if (clicked) {
-      alert('Teste em andamento!')
+      alert('Already running a test!')
     }
-    else {
-    startTime = new Date().getTime();    
-    clicked = true;
+    else {    
+      startTime = new Date().getTime();    
+      clicked = true;
+      info.innerHTML = 'Running';
     }
   }
 
@@ -35,7 +37,8 @@
     endTime = new Date().getTime();
     url = `https://demo.huxx.io/d/h9SVG1p7k/relatorio?orgId=2&from=${startTime}&to=${endTime}`;
     clicked = false;
-    alert('Teste finalizado');
+    info.innerHTML = '';
+    alert('Test successfully ended!');
   } 
   
 </script>
@@ -52,13 +55,23 @@
   input {
     display: flex;    
     margin: 10px;  
-    border: 3px solid #6c0cf2;  
+    border: 2px solid #8e8e8e;
+    background-color: aliceblue;
     border-radius: 30px;
-    
+    width: 100%;
+    height: 40px;
+    text-indent: 4px;    
   }  
+  input:hover {
+    border: 2px solid #6c0cf2;
+  }
+  #stat {
+    color: #4CAF50;
+  }
   .buttons {
     display: flex;
     flex-direction: column;
+    margin: 10px;
   }
   .status {
     margin: 10px;

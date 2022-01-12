@@ -18,8 +18,14 @@
   var clicked = false;
   var info = document.querySelector('#stat')
 
-  function sendData(init, end) {
-    //API SHIT    
+  function sendData(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", apiURL, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+      value: url
+    }));
+
   }
 
   function start() {

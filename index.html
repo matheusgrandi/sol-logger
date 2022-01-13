@@ -21,12 +21,13 @@
   var equipment = document.getElementById('equipment');
   
 
-  async function sendData(url) {
+  async function sendData(url, os) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", apiURL, true);
+    xhr.open("POST", 'http://localhost:3000/save', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     await xhr.send(JSON.stringify({
-      value: url
+      "url": url,
+      "os": os
     }));
 
   }
@@ -49,9 +50,13 @@
         }
     }  
 
-  function stop() {
+  async function stop() {
     endTime = new Date().getTime();
-    url = `https://demo.huxx.io/d/h9SVG1p7k/relatorio?orgId=2&from=${startTime}&to=${endTime}`;
+    url = `https://demo.huxx.io/d/h9SVG1p7k/relatorio?orgId=2&from=${startTime}&to=${endTime}&kiosk`;
+    await sendData(url, os.value);
+    info.innerHTML = 'Saving!';
+    info.style.color = 'green';
+    await new Promise(r => setTimeout(r, 3000));
     clicked = false;
     info.innerHTML = '';
     os.disabled = false;

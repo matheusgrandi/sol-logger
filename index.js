@@ -1,16 +1,16 @@
 const express = require('express');
-const puppeteer = require("puppeteer");
+const puppeteer = require('puppeteer');
+const cors = require('cors');
 
 const app = express();
 
 app.use(express.json());
+app.use(cors())
 
 
 app.post('/save', async (request, response) => {
   console.log(request.body);
   const { url, os } = request.body;
-
-  console.log('funciona 1');
 
   const browser = await puppeteer.launch({    
     headless: true
@@ -35,7 +35,7 @@ app.post('/save', async (request, response) => {
   }
   )
 
-  await page.goto('https://demo.huxx.io/d/h9SVG1p7k/relatorio?orgId=2&kiosk', {   
+  await page.goto(url, {   
     waitUntil:'networkidle2',
   });
 
@@ -51,9 +51,8 @@ app.post('/save', async (request, response) => {
   //     width: 1440,
   //     height: 3000,
   //  }
-  });
-  
-  console.log('funciona 2');
+  });  
+
   browser.close();
 
 

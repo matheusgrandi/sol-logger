@@ -5,11 +5,18 @@
   "repository": "https://github.com/matheusgrandi/page-to-pdf-to-drive.git",
   "author": "matheusgrandi",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
   "private": false,
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
     "googleapis": "^39.2.0",
     "html-pdf-node": "^1.0.8",
+    "nodemon": "^2.0.15",
     "npm-check-updates": "^12.1.0",
+    "puppeteer": "^13.0.1",
     "uuid": "^8.3.2"
   }
 }

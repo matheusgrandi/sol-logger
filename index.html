@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="buttons">
-    <button class="button-start" onclick="start()">START</button>  
-    <button class="button-end" onclick="stop()">STOP</button>
+    <button id="button-start" onclick="start()">START</button>  
+    <button id="button-end" onclick="stop()">STOP</button>
   </div>
   <div class="infos">
     <div class="input">
@@ -19,6 +19,8 @@
   var info = document.getElementById('stat');
   var os = document.getElementById('os');
   var equipment = document.getElementById('equipment');
+  var startBtn = document.getElementById('button-start')
+  var stopBtn = document.getElementById('button-end')
   
 
   async function sendData(url, os) {
@@ -32,25 +34,24 @@
 
   }
 
-  function start() {
-    if (clicked) {
-      alert('Already running a test!')
-    }
-    else if (os.value == "" || equipment.value == "") {      
-        info.innerHTML = 'Invalid information';
-        info.style.color = 'red';        
+  function start() {    
+    if (os.value == "" || equipment.value == "") {      
+      info.innerHTML = 'Invalid information';
+      info.style.color = 'red';        
       }
     else {
-       startTime = new Date().getTime();    
-       clicked = true;
-       info.innerHTML = 'Running';
-       info.style.color = 'green';
-       os.disabled = true;
-       equipment.disabled = true;
-        }
+      startBtn.disabled = true;
+      startTime = new Date().getTime();    
+      clicked = true;
+      info.innerHTML = 'Running';
+      info.style.color = 'green';
+      os.disabled = true;
+      equipment.disabled = true;
+      }
     }  
 
   async function stop() {
+    stopBtn.disabled = true;
     endTime = new Date().getTime();
     url = `https://demo.huxx.io/d/h9SVG1p7k/relatorio?orgId=2&from=${startTime}&to=${endTime}&kiosk`;
     await sendData(url, os.value);
@@ -64,6 +65,8 @@
     os.value = ""
     equipment.value = ""
     alert('Test successfully ended!');
+    stopBtn.disabled = false;
+    startBtn.disabled = false;
   } 
   
 </script>
@@ -100,7 +103,7 @@
   .status {
     margin: 10px;
   }
-  .button-start {
+  #button-start {
   background-color: #4CAF50;
   border: none;
   border-radius: 12px;
@@ -113,7 +116,7 @@
   margin: 10px;
 
 }
-.button-end {
+#button-end {
   background-color: #c92830;
   border: none;
   border-radius: 12px;

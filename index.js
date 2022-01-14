@@ -42,6 +42,7 @@ app.post('/save', async (request, response) => {
 
 
   await page.screenshot({
+    omitBackground: true,
     path: `${os}.png`,
     fullPage: true
     

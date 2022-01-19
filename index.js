@@ -5,13 +5,15 @@ const axios = require('axios');
 
 const app = express();
 
-const headers = {
+const config = {
+  headers: {
   'Content-Type': 'application/json',
   'Authorization': 'Bearer eyJrIjoiNUdFaEVmSjQ2UVFFRDhTVTZXdVdKYWVHRWNRYkw5clMiLCJuIjoiYWRtaW4iLCJpZCI6Mn0='
+  }
 }
 
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 
 axios.get('https://demo.huxx.io/api/dashboards/uid/h9SVG1p7k').then(response => {
   console.log(response.data.meta.version);
@@ -21,43 +23,20 @@ axios.get('https://demo.huxx.io/api/dashboards/uid/h9SVG1p7k').then(response => 
 });
 
 
-
 //Generates png from dashboard
 app.post('/save', async (request, response) => {
   console.log(request.body);
   const { url, os, equipment } = request.body;
 
   //Dashboard updates
-  version = axios.get('https://demo.huxx.io/api/dashboards/uid/h9SVG1p7k')
+  dashInfo = await axios.get('https://demo.huxx.io/api/dashboards/uid/h9SVG1p7k')
   .catch(error => {
   console.log(error);
   });
 
-  version = (teste.response.data.meta.version);
+  version = dashInfo.data.meta.version;
 
-  data = {
-    "meta": {
-      "type": "db",
-      "canSave": false,
-      "canEdit": false,
-      "canAdmin": false,
-      "canStar": false,
-      "slug": "relatorio",
-      "url": "/d/h9SVG1p7k/relatorio",
-      "expires": "0001-01-01T00:00:00Z",
-      "created": "2021-11-26T14:55:59Z",
-      "updated": "2022-01-14T17:45:50Z",
-      "updatedBy": "admin",
-      "createdBy": "admin",
-      "version": 58,
-      "hasAcl": false,
-      "isFolder": false,
-      "folderId": 0,
-      "folderTitle": "General",
-      "folderUrl": "",
-      "provisioned": false,
-      "provisionedExternalId": ""
-    },
+  data = {    
     "dashboard": {
       "annotations": {
         "list": [
@@ -997,11 +976,14 @@ app.post('/save', async (request, response) => {
       "timezone": "",
       "title": "Relatório",
       "uid": "h9SVG1p7k",
-      "version": version+1
+      "version": version
     }
   }
 
-  axios.post('https://demo.huxx.io/api/dashboards/db', data, headers)
+
+  
+
+  await axios.post('https://demo.huxx.io/api/dashboards/db', data, config)
   .then((response) => {
   console.log(response);
   })

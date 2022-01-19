@@ -23,13 +23,14 @@
   var stopBtn = document.getElementById('button-end')
   
 
-  async function sendData(url, os) {
+  async function sendData(url, os, equip) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", 'http://localhost:3000/save', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     await xhr.send(JSON.stringify({
       "url": url,
-      "os": os
+      "os": os,
+      "equipment": equip
     }));
 
   }
@@ -54,7 +55,7 @@
     stopBtn.disabled = true;
     endTime = new Date().getTime();
     url = `https://demo.huxx.io/d/h9SVG1p7k/relatorio?orgId=2&from=${startTime}&to=${endTime}&kiosk`;
-    await sendData(url, os.value);
+    await sendData(url, os.value, equipment.value);
     info.innerHTML = 'Saving!';
     info.style.color = 'green';
     await new Promise(r => setTimeout(r, 3000));

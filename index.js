@@ -15,18 +15,12 @@ const config = {
 app.use(express.json());
 app.use(cors());
 
-axios.get('https://demo.huxx.io/api/dashboards/uid/h9SVG1p7k').then(response => {
-  console.log(response.data.meta.version);
-})
-.catch(error => {
-  console.log(error);
-});
 
 
 //Generates png from dashboard
 app.post('/save', async (request, response) => {
   console.log(request.body);
-  const { url, os, equipment } = request.body;
+  const { url, os, equipment, init, end } = request.body;
 
   //Dashboard updates
   dashInfo = await axios.get('https://demo.huxx.io/api/dashboards/uid/h9SVG1p7k')
@@ -980,8 +974,15 @@ app.post('/save', async (request, response) => {
     }
   }
 
+  tags = {
+      "dashboardId":3,
+      "panelId":2,
+      "time": init,
+      "timeEnd": end,
+      "tags":[`${os}`,`${equipment}`],
+      "text":""
+    }
 
-  
 
   await axios.post('https://demo.huxx.io/api/dashboards/db', data, config)
   .then((response) => {
@@ -989,7 +990,15 @@ app.post('/save', async (request, response) => {
   })
   .catch((error) => {
   console.log(error);
+  });
+
+  await axios.post('https://demo.huxx.io/api/annotations', tags, config)
+  .then((response) => {
+    console.log(response);
   })
+  .cath((error) => {
+    console.log(error);
+  });
 
   //Screenshot
   const browser = await puppeteer.launch({ 

@@ -1054,7 +1054,7 @@ app.post('/save', async (request, response) => {
 
   return response.status(201).send();
 
-  await smb.sendFile(`${os}.png`, '/ABC/HSE/Qualidade/Testes de qualidade/Huxx')
+  await client.sendFile(`${os}.png`, '/ABC/HSE/Qualidade/Testes de qualidade/Huxx')
 
 });
 

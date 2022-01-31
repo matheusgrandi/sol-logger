@@ -13,9 +13,9 @@ app.use(cors());
 //Samba info
 
 let client = new smb({
-  address: '//10.0.0.3/dados',
-  username: 'huxx',
-  password: 'Huxxdrives3019'
+  address: '//10.0.0.3/dados/ABC/HSE/Qualidade/Testes de qualidade/Huxx',
+  username: 'laboratorio',
+  password: 'Tecnicos455'
 })
 
 
@@ -1014,7 +1014,7 @@ app.post('/save', async (request, response) => {
 
   //Screenshot
   const browser = await puppeteer.launch({ 
-    executablePath: '/usr/bin/chromium-browser',   
+      
     headless: true
   });
 
@@ -1051,7 +1051,10 @@ app.post('/save', async (request, response) => {
 
   browser.close();
 
-  await client.sendFile(`${os}.png`, '/ABC/HSE/Qualidade/Testes de qualidade/Huxx')
+  await new Promise(resolve => setTimeout(resolve, 10000));
+  
+
+  await client.sendFile(`${os}.png`)
   .catch((error) => {
     console.log(error);
     });

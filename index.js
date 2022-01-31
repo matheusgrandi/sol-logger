@@ -1014,7 +1014,7 @@ app.post('/save', async (request, response) => {
 
   //Screenshot
   const browser = await puppeteer.launch({ 
-      
+    executablePath: '/usr/bin/chromium-browser',
     headless: true
   });
 

@@ -18,6 +18,7 @@
     "nodemon": "^2.0.15",
     "npm-check-updates": "^12.1.0",
     "puppeteer": "^13.0.1",
+    "samba-client": "^4.0.0",
     "uuid": "^8.3.2"
   }
 }

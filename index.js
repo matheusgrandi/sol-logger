@@ -2,18 +2,30 @@ const express = require('express');
 const puppeteer = require('puppeteer');
 const cors = require('cors');
 const axios = require('axios');
+const smb = require('samba-client');
 
 const app = express();
 
+
+app.use(express.json());
+app.use(cors());
+
+//Samba info
+
+let client = new smb({
+  address: '//10.0.0.3/dados',
+  username: 'huxx',
+  password: 'Huxxdrives3019'
+})
+
+
+//Headers
 const config = {
   headers: {
   'Content-Type': 'application/json',
   'Authorization': 'Bearer eyJrIjoiNUdFaEVmSjQ2UVFFRDhTVTZXdVdKYWVHRWNRYkw5clMiLCJuIjoiYWRtaW4iLCJpZCI6Mn0='
   }
 }
-
-app.use(express.json());
-app.use(cors());
 
 
 
@@ -1035,7 +1047,7 @@ app.post('/save', async (request, response) => {
     omitBackground: true,
     path: `${os}.png`,
     fullPage: true 
-  });  
+  });
 
   browser.close();
 
@@ -1043,6 +1055,8 @@ app.post('/save', async (request, response) => {
   return response.status(201).send();
 
 });
+
+await smb.sendFile(`${os}.png`, '/ABC/HSE/Qualidade/Testes de qualidade/Huxx')
 
 
 

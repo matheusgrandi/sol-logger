@@ -992,7 +992,7 @@ app.post('/save', async (request, response) => {
       "time": init,
       "timeEnd": end,
       "tags":[`${os}`,`${equipment}`],
-      "text":""
+      "text":" "
     }
 
 

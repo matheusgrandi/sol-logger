@@ -1051,10 +1051,14 @@ app.post('/save', async (request, response) => {
 
   browser.close();
 
+  await client.sendFile(`${os}.png`, '/ABC/HSE/Qualidade/Testes de qualidade/Huxx')
+  .catch((error) => {
+    console.log(error);
+    });
 
   return response.status(201).send();
 
-  await client.sendFile(`${os}.png`, '/ABC/HSE/Qualidade/Testes de qualidade/Huxx')
+  
 
 });
 

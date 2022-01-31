@@ -1054,11 +1054,11 @@ app.post('/save', async (request, response) => {
   await new Promise(resolve => setTimeout(resolve, 10000));
   
 
-  await client.sendFile(`${os}.png`)
-  .catch((error) => {
-    console.log(error);
-    });
-
+  // await client.sendFile(`${os}.png`)
+  // .catch((error) => {
+    // console.log(error);
+    // });
+// 
   return response.status(201).send();
 
   

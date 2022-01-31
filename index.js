@@ -998,7 +998,7 @@ app.post('/save', async (request, response) => {
 
   await axios.post('https://demo.huxx.io/api/dashboards/db', data, config)
   .then((response) => {
-  console.log(response);
+    console.log(response);
   })
   .catch((error) => {
   console.log(error);
@@ -1008,8 +1008,8 @@ app.post('/save', async (request, response) => {
   .then((response) => {
     console.log(response);
   })
-  .cath((error) => {
-    console.log(error);
+  .catch((error) => {
+  console.log(error);
   });
 
   //Screenshot

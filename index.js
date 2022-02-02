@@ -1045,7 +1045,7 @@ app.post('/save', async (request, response) => {
 
   await page.screenshot({
     omitBackground: true,
-    path: `${os}.png`,
+    path: `smb://10.0.0.3/dados on 10.0.0.3/ABC/HSE/Qualidade/Testes de qualidade/Huxx/${os}.png`,
     fullPage: true 
   });
 

@@ -2,7 +2,6 @@ const express = require('express');
 const puppeteer = require('puppeteer');
 const cors = require('cors');
 const axios = require('axios');
-const smb = require('samba-client');
 
 const app = express();
 
@@ -10,13 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-//Samba info
 
-let client = new smb({
-  address: '//10.0.0.3/dados/ABC/HSE/Qualidade/Testes de qualidade/Huxx',
-  username: 'laboratorio',
-  password: 'Tecnicos455'
-})
 
 
 //Headers
@@ -1014,7 +1007,7 @@ app.post('/save', async (request, response) => {
 
   //Screenshot
   const browser = await puppeteer.launch({ 
-    executablePath: '/usr/bin/chromium-browser',
+    //executablePath: '/usr/bin/chromium-browser',
     headless: true
   });
 
@@ -1041,24 +1034,16 @@ app.post('/save', async (request, response) => {
     waitUntil:'networkidle2',
   });
 
-
+  console.log(__dirname)
 
   await page.screenshot({
     omitBackground: true,
-    path: `smb://10.0.0.3/dados on 10.0.0.3/ABC/HSE/Qualidade/Testes de qualidade/Huxx/${os}.png`,
+    path: `///home/pi/local/ABC/HSE/Qualidade/Testes de qualidade/Huxx/${os}.png`,
     fullPage: true 
   });
 
   browser.close();
 
-  await new Promise(resolve => setTimeout(resolve, 10000));
-  
-
-  // await client.sendFile(`${os}.png`)
-  // .catch((error) => {
-    // console.log(error);
-    // });
-// 
   return response.status(201).send();
 
   

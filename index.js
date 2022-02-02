@@ -1033,8 +1033,7 @@ app.post('/save', async (request, response) => {
   await page.goto(url, {   
     waitUntil:'networkidle2',
   });
-
-  console.log(__dirname)
+ 
 
   await page.screenshot({
     omitBackground: true,

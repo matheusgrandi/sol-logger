@@ -1,0 +1,4 @@
+Temp: 20 - 100
+Corrente: 30-110
+Tensão barramento: 250-750
+Velocidade: 0 - 25

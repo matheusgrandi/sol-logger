@@ -6,7 +6,8 @@
   "author": "matheusgrandi",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "smb": "nodemon smb-test.js"
   },
   "private": false,
   "dependencies": {

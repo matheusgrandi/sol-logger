@@ -1,26 +1,4 @@
-data = {
-  "meta": {
-    "type": "db",
-    "canSave": false,
-    "canEdit": false,
-    "canAdmin": false,
-    "canStar": false,
-    "slug": "relatorio",
-    "url": "/d/h9SVG1p7k/relatorio",
-    "expires": "0001-01-01T00:00:00Z",
-    "created": "2021-11-26T14:55:59Z",
-    "updated": "2022-01-14T17:45:50Z",
-    "updatedBy": "admin",
-    "createdBy": "admin",
-    "version": version + 1,
-    "hasAcl": false,
-    "isFolder": false,
-    "folderId": 0,
-    "folderTitle": "General",
-    "folderUrl": "",
-    "provisioned": false,
-    "provisionedExternalId": ""
-  },
+{  
   "dashboard": {
     "annotations": {
       "list": [
@@ -120,7 +98,7 @@ data = {
         },
         "id": 9,
         "options": {
-          "content": `<h1>Relatório Técnico</h1>\n<ul>\n    <li>OS: ${os} </li>\n    <li>Equipamento: ${equipment}</li>\n    </ul>\n\n<p>\nRelatório feito por Huxx - Advanced Monitoring System\n</p>\nConheça mais em:\n<a>www.huxx.io</a>    `,
+          "content": "`<h1>Relatório Técnico</h1>\n<ul>\n    <li>OS: ${os} </li>\n    <li>Equipamento: ${equipment}</li>\n    </ul>\n\n<p>\nRelatório feito por Huxx - Advanced Monitoring System\n</p>\nConheça mais em:\n<a>www.huxx.io</a>`",
           "mode": "html"
         },
         "pluginVersion": "7.1.0",
@@ -448,8 +426,8 @@ data = {
             "format": "amp",
             "label": null,
             "logBase": 1,
-            "max": null,
-            "min": null,
+            "max": "110",
+            "min": "30",
             "show": true
           },
           {
@@ -589,8 +567,8 @@ data = {
             "format": "volt",
             "label": null,
             "logBase": 1,
-            "max": null,
-            "min": null,
+            "max": "750",
+            "min": "250",
             "show": true
           },
           {
@@ -690,10 +668,12 @@ data = {
         "renderer": "flot",
         "seriesOverrides": [
           {
+            "$$hashKey": "object:177",
             "alias": "temperature air_temperature {equipment=\"drive_test\", location=\"laboratory\"}",
             "yaxis": 2
           },
           {
+            "$$hashKey": "object:178",
             "alias": "Velocidade do Ar",
             "yaxis": 2
           }
@@ -763,8 +743,8 @@ data = {
             "format": "celsius",
             "label": null,
             "logBase": 1,
-            "max": null,
-            "min": null,
+            "max": "100",
+            "min": "20",
             "show": true
           },
           {
@@ -802,11 +782,7 @@ data = {
               "properties": [
                 {
                   "id": "displayName",
-                  "value": "Velocidade do Ar"
-                },
-                {
-                  "id": "unit",
-                  "value": "celsius"
+                  "value": "Velocidade do ar"
                 }
               ]
             }
@@ -868,7 +844,7 @@ data = {
             ],
             "orderByTime": "ASC",
             "policy": "default",
-            "query": "from(bucket: \"huxx\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"speed\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"air_speed\")\r\n  |> filter(fn: (r) => r[\"equipment\"] == \"drive_test\")\r\n  |> filter(fn: (r) => r[\"location\"] == \"laboratory\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+            "query": "from(bucket: \"huxx\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"speed\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"air_speed\")\r\n  |> filter(fn: (r) => r[\"equipment\"] == \"drive_test\")\r\n  |> filter(fn: (r) => r[\"location\"] == \"laboratory\")\r\n  |> map(fn: (r) => ({ r with _value: r._value * 1.66 }))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -909,21 +885,21 @@ data = {
         "yaxes": [
           {
             "$$hashKey": "object:335",
-            "format": "celsius",
-            "label": null,
+            "format": "none",
+            "label": "",
             "logBase": 1,
-            "max": null,
-            "min": null,
+            "max": "25",
+            "min": "0",
             "show": true
           },
           {
             "$$hashKey": "object:336",
-            "format": "celsius",
+            "format": "velocityms",
             "label": null,
             "logBase": 1,
             "max": null,
             "min": null,
-            "show": true
+            "show": false
           }
         ],
         "yaxis": {
@@ -932,7 +908,7 @@ data = {
         }
       }
     ],
-    "refresh": false,
+    "refresh": "5s",
     "schemaVersion": 26,
     "style": "dark",
     "tags": [],
@@ -960,6 +936,6 @@ data = {
     "timezone": "",
     "title": "Relatório",
     "uid": "h9SVG1p7k",
-    "version": version+1
+    "version": version
   }
 }

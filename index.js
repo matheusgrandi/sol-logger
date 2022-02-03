@@ -2,6 +2,7 @@ const express = require('express');
 const puppeteer = require('puppeteer');
 const cors = require('cors');
 const axios = require('axios');
+const smb = require('samba-client');
 
 const app = express();
 
@@ -135,7 +136,7 @@ app.post('/save', async (request, response) => {
           },
           "id": 9,
           "options": {
-            "content": `<h1>Relatório Técnico</h1>\n<ul>\n    <li>OS: ${os} </li>\n    <li>Equipamento: ${equipment}</li>\n    </ul>\n\n<p>\nRelatório feito por Huxx - Advanced Monitoring System\n</p>\nConheça mais em:\n<a>www.huxx.io</a>    `,
+            "content": "`<h1>Relatório Técnico</h1>\n<ul>\n    <li>OS: ${os} </li>\n    <li>Equipamento: ${equipment}</li>\n    </ul>\n\n<p>\nRelatório feito por Huxx - Advanced Monitoring System\n</p>\nConheça mais em:\n<a>www.huxx.io</a>`",
             "mode": "html"
           },
           "pluginVersion": "7.1.0",
@@ -463,8 +464,8 @@ app.post('/save', async (request, response) => {
               "format": "amp",
               "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
+              "max": "110",
+              "min": "30",
               "show": true
             },
             {
@@ -604,8 +605,8 @@ app.post('/save', async (request, response) => {
               "format": "volt",
               "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
+              "max": "750",
+              "min": "250",
               "show": true
             },
             {
@@ -705,10 +706,12 @@ app.post('/save', async (request, response) => {
           "renderer": "flot",
           "seriesOverrides": [
             {
+              "$$hashKey": "object:177",
               "alias": "temperature air_temperature {equipment=\"drive_test\", location=\"laboratory\"}",
               "yaxis": 2
             },
             {
+              "$$hashKey": "object:178",
               "alias": "Velocidade do Ar",
               "yaxis": 2
             }
@@ -778,8 +781,8 @@ app.post('/save', async (request, response) => {
               "format": "celsius",
               "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
+              "max": "100",
+              "min": "20",
               "show": true
             },
             {
@@ -817,11 +820,7 @@ app.post('/save', async (request, response) => {
                 "properties": [
                   {
                     "id": "displayName",
-                    "value": "Velocidade do Ar"
-                  },
-                  {
-                    "id": "unit",
-                    "value": "celsius"
+                    "value": "Velocidade do ar"
                   }
                 ]
               }
@@ -883,7 +882,7 @@ app.post('/save', async (request, response) => {
               ],
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "from(bucket: \"huxx\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"speed\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"air_speed\")\r\n  |> filter(fn: (r) => r[\"equipment\"] == \"drive_test\")\r\n  |> filter(fn: (r) => r[\"location\"] == \"laboratory\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+              "query": "from(bucket: \"huxx\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"speed\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"air_speed\")\r\n  |> filter(fn: (r) => r[\"equipment\"] == \"drive_test\")\r\n  |> filter(fn: (r) => r[\"location\"] == \"laboratory\")\r\n  |> map(fn: (r) => ({ r with _value: r._value * 1.66 }))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -924,21 +923,21 @@ app.post('/save', async (request, response) => {
           "yaxes": [
             {
               "$$hashKey": "object:335",
-              "format": "celsius",
-              "label": null,
+              "format": "none",
+              "label": "",
               "logBase": 1,
-              "max": null,
-              "min": null,
+              "max": "25",
+              "min": "0",
               "show": true
             },
             {
               "$$hashKey": "object:336",
-              "format": "celsius",
+              "format": "velocityms",
               "label": null,
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true
+              "show": false
             }
           ],
           "yaxis": {
@@ -947,7 +946,7 @@ app.post('/save', async (request, response) => {
           }
         }
       ],
-      "refresh": false,
+      "refresh": "5s",
       "schemaVersion": 26,
       "style": "dark",
       "tags": [],
@@ -1037,9 +1036,11 @@ app.post('/save', async (request, response) => {
 
   await page.screenshot({
     omitBackground: true,
-    path: `///home/pi/local/ABC/HSE/Qualidade/Huxx/${os}.png`,
+    path: `///mnt/local/Qualidade/Huxx/${os}.png`,
     fullPage: true 
   });
+
+  console.log('image saved!');
 
   browser.close();
 
@@ -1048,8 +1049,6 @@ app.post('/save', async (request, response) => {
   
 
 });
-
-
 
 
 

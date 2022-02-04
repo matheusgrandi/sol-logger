@@ -73,7 +73,7 @@ app.post('/save', async (request, response) => {
           },
           "id": 7,
           "options": {
-            "content": "<img src=\"https://s3.sa-east-1.amazonaws.com/huxx.io/huxx-logo.png\" width=\"400\" height=\"160\"/>",
+            "content": "<img src=\"https://s3.sa-east-1.amazonaws.com/huxx.io/huxx-light.png\" width=\"480\" height=\"190\"/>",
             "mode": "html"
           },
           "pluginVersion": "7.1.0",
@@ -136,7 +136,7 @@ app.post('/save', async (request, response) => {
           },
           "id": 9,
           "options": {
-            "content": "`<h1>Relatório Técnico</h1>\n<ul>\n    <li>OS: ${os} </li>\n    <li>Equipamento: ${equipment}</li>\n    </ul>\n\n<p>\nRelatório feito por Huxx - Advanced Monitoring System\n</p>\nConheça mais em:\n<a>www.huxx.io</a>`",
+            "content": `<h1>Relatório Técnico</h1>\n<ul>\n    <li>OS: ${os} </li>\n    <li>Equipamento: ${equipment}</li>\n    </ul>\n\n<p>\nRelatório feito por Huxx - Advanced Monitoring System\n</p>\nConheça mais em:\n<a>www.huxx.io</a>`,
             "mode": "html"
           },
           "pluginVersion": "7.1.0",
@@ -1007,7 +1007,8 @@ app.post('/save', async (request, response) => {
   //Screenshot
   const browser = await puppeteer.launch({ 
     executablePath: '/usr/bin/chromium-browser',
-    headless: true
+    headless: true,
+    args: ["--no-sandbox"]
   });
 
   const page = await browser.newPage();

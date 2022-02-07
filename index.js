@@ -1027,7 +1027,6 @@ app.post('/save', async (request, response) => {
 
     await page.evaluate(() => {
     document.querySelector('.grafana-app').style.height = `${document.querySelector('.dashboard-container .layout').clientHeight + 16*2}px`
-    document.querySelector('.body').style.font-size = 17px ;
   }
   )
 

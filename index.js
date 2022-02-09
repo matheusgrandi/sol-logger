@@ -2,15 +2,12 @@ const express = require('express');
 const puppeteer = require('puppeteer');
 const cors = require('cors');
 const axios = require('axios');
-const smb = require('samba-client');
 
 const app = express();
 
 
 app.use(express.json());
 app.use(cors());
-
-
 
 
 //Headers

@@ -1,9 +1,9 @@
 class Dashboard {
   url: string;
   os: number;
-  equipment: string;  
+  equipment: string;
   init: number;
-  end: number; 
+  end: number;
 }
 
 export { Dashboard };

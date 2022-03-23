@@ -229,7 +229,7 @@ app.post("/save", async (request, response) => {
           bars: false,
           dashLength: 10,
           dashes: false,
-          datasource: null,
+          datasource: "Jiga",
           fieldConfig: {
             defaults: {
               custom: {},
@@ -287,8 +287,6 @@ app.post("/save", async (request, response) => {
               measurement: "current",
               orderByTime: "ASC",
               policy: "default",
-              query:
-                'from(bucket: "huxx")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r["_measurement"] == "current")\r\n  |> filter(fn: (r) => r["_field"] == "fase_u")\r\n  |> filter(fn: (r) => r["equipment"] == "ac_motor")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: "last")',
               refId: "A",
               resultFormat: "time_series",
               select: [
@@ -299,18 +297,12 @@ app.post("/save", async (request, response) => {
                   },
                   {
                     params: [],
-                    type: "mean",
+                    type: "last",
                   },
                 ],
               ],
               tags: [
                 {
-                  key: "equipment",
-                  operator: "=",
-                  value: "ac_motor",
-                },
-                {
-                  condition: "AND",
                   key: "type",
                   operator: "=",
                   value: "u phase",
@@ -332,8 +324,6 @@ app.post("/save", async (request, response) => {
               measurement: "current",
               orderByTime: "ASC",
               policy: "default",
-              query:
-                'from(bucket: "huxx")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r["_measurement"] == "current")\r\n  |> filter(fn: (r) => r["_field"] == "fase_v")\r\n  |> filter(fn: (r) => r["equipment"] == "ac_motor")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: "last")',
               refId: "B",
               resultFormat: "time_series",
               select: [
@@ -344,18 +334,12 @@ app.post("/save", async (request, response) => {
                   },
                   {
                     params: [],
-                    type: "mean",
+                    type: "last",
                   },
                 ],
               ],
               tags: [
                 {
-                  key: "equipment",
-                  operator: "=",
-                  value: "ac_motor",
-                },
-                {
-                  condition: "AND",
                   key: "type",
                   operator: "=",
                   value: "v phase",
@@ -377,8 +361,6 @@ app.post("/save", async (request, response) => {
               measurement: "current",
               orderByTime: "ASC",
               policy: "default",
-              query:
-                'from(bucket: "huxx")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r["_measurement"] == "current")\r\n  |> filter(fn: (r) => r["_field"] == "fase_w")\r\n  |> filter(fn: (r) => r["equipment"] == "ac_motor")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: "last")',
               refId: "C",
               resultFormat: "time_series",
               select: [
@@ -389,18 +371,12 @@ app.post("/save", async (request, response) => {
                   },
                   {
                     params: [],
-                    type: "mean",
+                    type: "last",
                   },
                 ],
               ],
               tags: [
                 {
-                  key: "equipment",
-                  operator: "=",
-                  value: "ac_motor",
-                },
-                {
-                  condition: "AND",
                   key: "type",
                   operator: "=",
                   value: "w phase",
@@ -456,7 +432,7 @@ app.post("/save", async (request, response) => {
           bars: false,
           dashLength: 10,
           dashes: false,
-          datasource: null,
+          datasource: "Jiga",
           fieldConfig: {
             defaults: {
               custom: {},
@@ -500,7 +476,7 @@ app.post("/save", async (request, response) => {
           steppedLine: false,
           targets: [
             {
-              alias: "Tensão no barramento",
+              alias: "Tensão no Barramento",
               groupBy: [
                 {
                   params: ["$__interval"],
@@ -514,8 +490,6 @@ app.post("/save", async (request, response) => {
               measurement: "voltage",
               orderByTime: "ASC",
               policy: "default",
-              query:
-                'from(bucket: "huxx")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r["_measurement"] == "voltage")\r\n  |> filter(fn: (r) => r["_field"] == "voltage")\r\n  |> filter(fn: (r) => r["equipment"] == "drive_test")\r\n  |> filter(fn: (r) => r["location"] == "laboratory")\r\n  |> map(fn: (r) => ({ r with _value: (r._value - 2354.0) * 0.675 }))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: "last")\r\n\r\n',
               refId: "A",
               resultFormat: "time_series",
               select: [
@@ -587,7 +561,7 @@ app.post("/save", async (request, response) => {
           bars: false,
           dashLength: 10,
           dashes: false,
-          datasource: null,
+          datasource: "Jiga",
           fieldConfig: {
             defaults: {
               custom: {},
@@ -597,8 +571,7 @@ app.post("/save", async (request, response) => {
               {
                 matcher: {
                   id: "byName",
-                  options:
-                    'air_temperature {equipment="drive_test", location="laboratory"}',
+                  options: "Temperatura do Ar",
                 },
                 properties: [
                   {
@@ -608,23 +581,6 @@ app.post("/save", async (request, response) => {
                   {
                     id: "unit",
                     value: "celsius",
-                  },
-                ],
-              },
-              {
-                matcher: {
-                  id: "byName",
-                  options:
-                    'air_speed {equipment="drive_test", location="laboratory"}',
-                },
-                properties: [
-                  {
-                    id: "displayName",
-                    value: "Velocidade do Ar",
-                  },
-                  {
-                    id: "unit",
-                    value: "velocityms",
                   },
                 ],
               },
@@ -682,7 +638,7 @@ app.post("/save", async (request, response) => {
           steppedLine: false,
           targets: [
             {
-              alias: "Temperatura do Ar de Resfriamento",
+              alias: "Temperatura do Ar",
               groupBy: [
                 {
                   params: ["$__interval"],
@@ -696,8 +652,6 @@ app.post("/save", async (request, response) => {
               measurement: "temperature",
               orderByTime: "ASC",
               policy: "default",
-              query:
-                'from(bucket: "huxx")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r["_measurement"] == "temperature")\r\n  |> filter(fn: (r) => r["_field"] == "air_temperature")\r\n  |> filter(fn: (r) => r["equipment"] == "drive_test")\r\n  |> filter(fn: (r) => r["location"] == "laboratory")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: "mean")',
               refId: "A",
               resultFormat: "time_series",
               select: [
@@ -714,9 +668,9 @@ app.post("/save", async (request, response) => {
               ],
               tags: [
                 {
-                  key: "equipment",
+                  key: "type",
                   operator: "=",
-                  value: "drive_test",
+                  value: "air",
                 },
               ],
             },
@@ -742,7 +696,7 @@ app.post("/save", async (request, response) => {
           yaxes: [
             {
               $$hashKey: "object:335",
-              format: "none",
+              format: "celsius",
               label: null,
               logBase: 1,
               max: "100",
@@ -769,7 +723,7 @@ app.post("/save", async (request, response) => {
           bars: false,
           dashLength: 10,
           dashes: false,
-          datasource: null,
+          datasource: "Jiga",
           fieldConfig: {
             defaults: {
               custom: {},
@@ -779,13 +733,12 @@ app.post("/save", async (request, response) => {
               {
                 matcher: {
                   id: "byName",
-                  options:
-                    'air_speed {equipment="drive_test", location="laboratory"}',
+                  options: "Velocidade do Ar de Resfriamento",
                 },
                 properties: [
                   {
-                    id: "displayName",
-                    value: "Velocidade do ar",
+                    id: "unit",
+                    value: "velocityms",
                   },
                 ],
               },
@@ -845,8 +798,6 @@ app.post("/save", async (request, response) => {
               measurement: "speed",
               orderByTime: "ASC",
               policy: "default",
-              query:
-                'from(bucket: "huxx")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r["_measurement"] == "speed")\r\n  |> filter(fn: (r) => r["_field"] == "air_speed")\r\n  |> filter(fn: (r) => r["equipment"] == "drive_test")\r\n  |> filter(fn: (r) => r["location"] == "laboratory")\r\n  |> map(fn: (r) => ({ r with _value: r._value * 1.66 }))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: "last")',
               refId: "A",
               resultFormat: "time_series",
               select: [
@@ -858,6 +809,10 @@ app.post("/save", async (request, response) => {
                   {
                     params: [],
                     type: "last",
+                  },
+                  {
+                    params: ["*1.66"],
+                    type: "math",
                   },
                 ],
               ],
@@ -891,7 +846,7 @@ app.post("/save", async (request, response) => {
           yaxes: [
             {
               $$hashKey: "object:335",
-              format: "none",
+              format: "velocityms",
               label: "",
               logBase: 1,
               max: "25",

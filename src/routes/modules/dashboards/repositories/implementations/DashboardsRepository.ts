@@ -14,6 +14,14 @@ class DashboardsRepository implements IDashboardsRepository {
     });
     return data.meta.dashboards;
   }
+
+  setInfo({ dashboard }) {
+    dashboard
+  }
+
+
 }
+
+
 
 export { DashboardsRepository };

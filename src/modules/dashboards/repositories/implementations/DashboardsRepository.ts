@@ -1,10 +1,5 @@
-import {
-  IDashboardsRepository,
-  IGetDataDTO,
-  IGetPrintDTO,
-  ISetInfoDTO,
-} from "./../IDashboardsRepository";
-import axios from "axios";
+import { IDashboardsRepository } from './../IDashboardsRepository';
+import axios from 'axios';
 
 class DashboardsRepository implements IDashboardsRepository {
   async getData({ uid }: IGetDataDTO): Promise<object> {
@@ -16,12 +11,8 @@ class DashboardsRepository implements IDashboardsRepository {
   }
 
   setInfo({ dashboard }) {
-    dashboard
+    dashboard;
   }
-
-
 }
-
-
 
 export { DashboardsRepository };

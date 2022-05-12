@@ -1,17 +1,30 @@
 import { IDashboardsRepository } from './../IDashboardsRepository';
 import axios from 'axios';
 
-class DashboardsRepository implements IDashboardsRepository {
-  async getData({ uid }: IGetDataDTO): Promise<object> {
-    const url = `https://demo.huxx.io/api/dashboards/uid/${uid}/`;
-    const data = await axios.get(url).catch((error) => {
-      console.log(error);
-    });
-    return data.meta.dashboards;
-  }
+interface IConfigDTO{
+  ssl_enabled?: boolean,
+  login_url?: string,
+  username?: string,
+  password?: string,
+  token: string 
+}
 
-  setInfo({ dashboard }) {
-    dashboard;
+class DashboardsRepository implements IDashboardsRepository {
+  constructor(token: string) {
+    const config = {
+      headers: { 'Content-Type': 'application/json', Authorization: token },
+    };
+  }
+  setData(equipment: string): Promise<object> {
+    throw new Error('Method not implemented.');
+  }
+  setAlert(equipment: string): Promise<object> {
+    throw new Error('Method not implemented.');
+  }
+  async getData(id: string): Promise<object> {
+    const data = await axios.get(
+      'https://demo.huxx.io/api/dashboards/uid/h9SVG1p7k
+    );
   }
 }
 

@@ -1,6 +1,7 @@
 {
   "ssl_enabled": true,
-  "login_url": "example.com/login",
+  "url": "example.com",
   "username": "username",
-  "password": "password"
+  "password": "password",
+  "token": "token"
 }

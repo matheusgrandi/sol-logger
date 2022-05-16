@@ -1,5 +1,5 @@
 import express from 'express';
-import { dashboardRoutes } from 'routes/dashboard.routes';
+import { dashboardRoutes } from './routes/dashboard.routes';
 import cors from 'cors';
 
 const app = express();

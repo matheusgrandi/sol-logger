@@ -19,7 +19,7 @@ class User {
   company: string;
 
   @Column()
-  huxxToken?: string;
+  huxx_token?: string;
 
   @Column()
   isAdmin: boolean;
@@ -33,3 +33,5 @@ class User {
     }
   }
 }
+
+export { User };

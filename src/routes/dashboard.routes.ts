@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 const dashboardRoutes = Router();
 
-dashboardRoutes.post(('/relatory'), (request, response) =>{
+dashboardRoutes.get(('/relatory'), (request, response) =>{
   
 });
 

@@ -7,10 +7,7 @@ export const AppDataSource = new DataSource({
   port: 5433,
   username: 'admin',
   password: 'admin',
-  database: 'test',
-  synchronize: true,
-  logging: true,
-  entities: [Post, Category],
+  database: 'huxx_logger',
   subscribers: [],
   migrations: [],
 });

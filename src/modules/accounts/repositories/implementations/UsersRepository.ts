@@ -1,13 +1,14 @@
-import { getRepository, Repository } from 'typeorm';
-
+import { Repository } from 'typeorm';
 import { ICreateUserDTO } from 'modules/accounts/dtos/ICreateUserDTO';
 import { User } from 'modules/accounts/entities/User';
 import { IUsersRepository } from '../IUsersRepository';
 
+import { AppDataSource } from './../../../../data-source';
+
 class UsersRepository implements IUsersRepository {
   private repository: Repository<User>;
   constructor() {
-    this.repository = getRepository(User);
+    this.repository = AppDataSource.getRepository(User);
   }
   create(data: ICreateUserDTO): Promise<void> {
     throw new Error('Method not implemented.');

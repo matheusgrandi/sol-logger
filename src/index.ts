@@ -1,6 +1,7 @@
 import express from 'express';
 import { dashboardRoutes } from './routes/dashboard.routes';
 import cors from 'cors';
+import 'reflect-metadata';
 
 const app = express();
 

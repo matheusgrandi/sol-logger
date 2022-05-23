@@ -16,7 +16,7 @@ class User {
   password: string;
 
   @Column()
-  company: string;
+  company?: string;
 
   @Column()
   huxx_token?: string;

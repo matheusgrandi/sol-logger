@@ -1,3 +1,14 @@
-import { AppDataSource } from './../data-source';
+import { DataSource } from 'typeorm';
 
-AppDataSource.initialize().catch((error) => console.log(error));
+const dataSource = new DataSource({
+  type: 'postgres',
+  host: 'database',
+  port: 5432,
+  username: 'admin',
+  password: 'admin',
+  database: 'huxx_logger',
+});
+
+dataSource.initialize();
+
+export { dataSource };

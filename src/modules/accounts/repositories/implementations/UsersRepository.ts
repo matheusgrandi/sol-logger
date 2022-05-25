@@ -3,12 +3,12 @@ import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { User } from '../../entities/User';
 import { IUsersRepository } from '../IUsersRepository';
 
-import { AppDataSource } from './../../../../data-source';
+import { dataSource } from './../../../../database';
 
 class UsersRepository implements IUsersRepository {
   private repository: Repository<User>;
   constructor() {
-    this.repository = AppDataSource.getRepository(User);
+    this.repository = dataSource.getRepository(User);
   }
   async create({
     name,
@@ -32,7 +32,7 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
   async findById(id: string): Promise<User> {
-    const user = await this.repository.findOne(id);
+    const user = await this.repository.findOne({ id });
     return user;
   }
 }

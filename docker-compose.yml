@@ -1,12 +1,12 @@
-version: "3.9"
+version: "3.7"
 
 services:
   database:
     image: postgres
     container_name: database_logger
-    restart: always
+    restart: always  
     ports:
-      - 5433:5433
+      - 5432:5432
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin

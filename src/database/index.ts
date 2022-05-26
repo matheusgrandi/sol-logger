@@ -7,6 +7,7 @@ const dataSource = new DataSource({
   username: 'admin',
   password: 'admin',
   database: 'huxx_logger',
+  migrations: ['User'],
 });
 
 dataSource.initialize();

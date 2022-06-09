@@ -13,6 +13,11 @@ const dataSource = new DataSource({
   migrations: ['src/database/migrations/*.ts'],
 });
 
-dataSource.initialize();
+dataSource
+  .initialize()
+  .then(async () => {
+    console.log('Initializing the DB');
+  })
+  .catch((err) => console.log(err));
 
 export { dataSource };

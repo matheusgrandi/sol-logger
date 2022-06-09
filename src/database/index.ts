@@ -1,4 +1,6 @@
+import 'reflect-metadata';
 import { DataSource } from 'typeorm';
+import { User } from '../modules/accounts/entities/User';
 
 const dataSource = new DataSource({
   type: 'postgres',
@@ -7,7 +9,8 @@ const dataSource = new DataSource({
   username: 'admin',
   password: 'admin',
   database: 'huxx_logger',
-  migrations: ['User'],
+  entities: [User],
+  migrations: ['src/database/migrations/*.ts'],
 });
 
 dataSource.initialize();

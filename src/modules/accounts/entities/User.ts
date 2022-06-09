@@ -19,9 +19,6 @@ class User {
   company?: string;
 
   @Column()
-  huxx_token?: string;
-
-  @Column()
   isAdmin: boolean;
 
   @CreateDateColumn()

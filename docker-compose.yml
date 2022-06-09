@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.9"
 
 services:
   database:
@@ -23,6 +23,7 @@ services:
       - 9229:9229 #debug
     volumes:
       - .:/usr/app
+      - /usr/src/app/node_modules
     links:
       - database
     depends_on:

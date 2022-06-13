@@ -3,7 +3,6 @@ interface ICreateUserDTO {
   email: string;
   password: string;
   company?: string;
-  huxx_token?: string;
 }
 
 export { ICreateUserDTO };

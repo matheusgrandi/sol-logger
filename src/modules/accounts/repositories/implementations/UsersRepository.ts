@@ -35,6 +35,11 @@ class UsersRepository implements IUsersRepository {
     const user = await this.repository.findOneBy({ id });
     return user;
   }
+
+  async findByPhone(phone: string): Promise<User> {
+    const user = await this.repository.findOneBy({ phone_number: phone });
+    return user;
+  }
 }
 
 export { UsersRepository };

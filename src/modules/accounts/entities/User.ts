@@ -13,13 +13,16 @@ class User {
   email: string;
 
   @Column()
+  phone_number: string;
+
+  @Column()
   password: string;
 
   @Column()
   company?: string;
 
   @Column()
-  isAdmin: boolean;
+  is_admin: boolean;
 
   @CreateDateColumn()
   created_at: Date;

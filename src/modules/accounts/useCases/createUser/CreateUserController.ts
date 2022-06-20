@@ -1,8 +1,22 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+
+import { CreateUserUseCase } from './CreateUserUseCase';
 
 class CreateUserConteller {
   async handle(request: Request, response: Response): Promise<Response> {
-    const {} = request.body;
+    const { name, email, password, company, phone_number } = request.body;
+    const createUserUseCase = container.resolve(CreateUserUseCase);
+
+    await createUserUseCase.execute({
+      name,
+      email,
+      password,
+      company,
+      phone_number,
+    });
+
+    return response.status(201).send();
   }
 }
 export { CreateUserConteller };

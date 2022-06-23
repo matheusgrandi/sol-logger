@@ -1,5 +1,4 @@
 import { inject, injectable } from 'tsyringe';
-import { StringLiteralLike } from 'typescript';
 import { IUsersRepository } from '../../repositories/IUsersRepository';
 
 interface IRequest {

@@ -1,4 +1,3 @@
-import { manufacturers } from 'googleapis/build/src/apis/manufacturers';
 import { Repository } from 'typeorm';
 import { dataSource } from '../../../../database';
 import { ICreateServiceDTO } from '../../dtos/ICreateServiceDTO';

@@ -16,7 +16,7 @@ class Service {
   description: string;
 
   @Column()
-  type: string;
+  manufacturer: string;
 
   @Column()
   endpoint: string;

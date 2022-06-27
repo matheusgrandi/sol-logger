@@ -10,8 +10,24 @@ class ServicesRepository implements IServicesRepository {
   constructor() {
     this.repository = dataSource.getRepository(Service);
   }
-  create(data: ICreateServiceDTO): Promise<void> {
-    { id, user_id, manufacturer } = data
+  async create({
+    id,
+    user_id,
+    manufacturer,
+    endpoint,
+    username,
+    password,
+  }: ICreateServiceDTO): Promise<void> {
+    const user = this.repository.create({
+      id,
+      user_id,
+      manufacturer,
+      endpoint,
+      username,
+      password,
+    });
+
+    await this.repository.save(user);
   }
   findById(id: string): Promise<Service> {
     throw new Error('Method not implemented.');

@@ -1,3 +1,4 @@
+import { manufacturers } from 'googleapis/build/src/apis/manufacturers';
 import { Repository } from 'typeorm';
 import { dataSource } from '../../../../database';
 import { ICreateServiceDTO } from '../../dtos/ICreateServiceDTO';
@@ -10,7 +11,7 @@ class ServicesRepository implements IServicesRepository {
     this.repository = dataSource.getRepository(Service);
   }
   create(data: ICreateServiceDTO): Promise<void> {
-    throw new Error('Method not implemented.');
+    { id, user_id, manufacturer } = data
   }
   findById(id: string): Promise<Service> {
     throw new Error('Method not implemented.');

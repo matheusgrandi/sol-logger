@@ -1,7 +1,7 @@
 interface ICreateServiceDTO {
   id?: string;
   user_id: string;
-  brand: string;
+  manufacturer: string;
   endpoint: string;
   user: string;
   password: string;

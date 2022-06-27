@@ -54,6 +54,7 @@ export class CreateService1656340917927 implements MigrationInterface {
           {
             name: 'created_at',
             type: 'timestamp',
+            default: 'now()',
           },
         ],
       })

@@ -29,8 +29,9 @@ class ServicesRepository implements IServicesRepository {
 
     await this.repository.save(user);
   }
-  findById(id: string): Promise<Service> {
-    throw new Error('Method not implemented.');
+  async findById(id: string): Promise<Service> {
+    const user = await this.repository.findOneBy({ id });
+    return user;
   }
 }
 

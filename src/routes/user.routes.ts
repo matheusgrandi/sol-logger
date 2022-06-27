@@ -7,12 +7,11 @@ import { UpdateUserAvatarController } from '../modules/accounts/useCases/updateU
 import uploadCofig from '../config/upload';
 
 const userRoutes = Router();
+userRoutes.use(ensureAuthenticated);
 
 const uploadAvatar = multer(uploadCofig.upload('./tmp/avatar'));
 const createUserController = new CreateUserController();
 const updateUserAvatarController = new UpdateUserAvatarController();
-
-userRoutes.use(ensureAuthenticated);
 
 userRoutes.post('/', createUserController.handle);
 

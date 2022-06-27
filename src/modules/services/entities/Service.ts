@@ -10,13 +10,16 @@ class Service {
   user_id: string;
 
   @Column()
+  name: string;
+
+  @Column()
+  description: string;
+
+  @Column()
   type: string;
 
   @Column()
-  url: string;
-
-  @Column()
-  port: number;
+  endpoint: string;
 
   @Column()
   username: string;
@@ -25,13 +28,13 @@ class Service {
   password: string;
 
   @Column()
-  ssl: boolean;
-
-  @Column()
   is_active: boolean;
 
   @Column()
   status: string;
+
+  @CreateDateColumn()
+  last_run: string;
 
   @CreateDateColumn()
   created_at: Date;

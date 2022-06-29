@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { AppError } from '../../../../errors/AppError';
 import { ICreateServiceDTO } from '../../dtos/ICreateServiceDTO';
 import { IServicesRepository } from '../../repositories/IServicesRepository';
 
@@ -19,7 +20,7 @@ class CreateServiceUseCase {
   }: ICreateServiceDTO): Promise<void> {
     const serviceAlreadyExists = await this.servicesRepository.findById(id);
     if (serviceAlreadyExists) {
-      throw new Error('Service already in use!');
+      throw new AppError('Service already in use!', 401);
     }
     this.servicesRepository.create({
       id,

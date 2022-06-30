@@ -31,14 +31,14 @@ class UsersRepository implements IUsersRepository {
 
     await this.repository.save(user);
   }
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<User | null> {
     const user =
       email !== (undefined || null)
         ? await this.repository.findOneBy({ email })
         : null;
     return user;
   }
-  async findById(id: string): Promise<User> {
+  async findById(id: string): Promise<User | null> {
     const user =
       id !== (undefined || null)
         ? await this.repository.findOneBy({ id })
@@ -46,7 +46,7 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  async findByPhone(phone: string): Promise<User> {
+  async findByPhone(phone: string): Promise<User | null> {
     const user =
       phone !== (undefined || null)
         ? await this.repository.findOneBy({ phone_number: phone })

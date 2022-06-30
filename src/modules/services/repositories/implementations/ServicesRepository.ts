@@ -28,7 +28,7 @@ class ServicesRepository implements IServicesRepository {
 
     await this.repository.save(user);
   }
-  async findById(id: string): Promise<Service> {
+  async findById(id: string): Promise<Service | null> {
     const user =
       id !== (undefined || null)
         ? await this.repository.findOneBy({ id })

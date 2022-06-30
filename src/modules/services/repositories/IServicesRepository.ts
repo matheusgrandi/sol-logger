@@ -3,7 +3,7 @@ import { Service } from '../entities/Service';
 
 interface IServicesRepository {
   create(data: ICreateServiceDTO): Promise<void>;
-  findById(id: string): Promise<Service>;
+  findById(id: string): Promise<Service | null>;
 }
 
 export { IServicesRepository };

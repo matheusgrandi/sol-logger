@@ -13,7 +13,7 @@ class Service {
   name: string;
 
   @Column()
-  description: string;
+  description?: string;
 
   @Column()
   manufacturer: string;

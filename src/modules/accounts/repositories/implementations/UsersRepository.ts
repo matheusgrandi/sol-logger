@@ -32,16 +32,25 @@ class UsersRepository implements IUsersRepository {
     await this.repository.save(user);
   }
   async findByEmail(email: string): Promise<User> {
-    const user = await this.repository.findOneBy({ email });
+    const user =
+      email !== (undefined || null)
+        ? await this.repository.findOneBy({ email })
+        : null;
     return user;
   }
   async findById(id: string): Promise<User> {
-    const user = await this.repository.findOneBy({ id });
+    const user =
+      id !== (undefined || null)
+        ? await this.repository.findOneBy({ id })
+        : null;
     return user;
   }
 
   async findByPhone(phone: string): Promise<User> {
-    const user = await this.repository.findOneBy({ phone_number: phone });
+    const user =
+      phone !== (undefined || null)
+        ? await this.repository.findOneBy({ phone_number: phone })
+        : null;
     return user;
   }
 }

@@ -1,3 +1,4 @@
+import { publicEncrypt } from 'crypto';
 import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../errors/AppError';
 import { ICreateServiceDTO } from '../../dtos/ICreateServiceDTO';
@@ -13,18 +14,23 @@ class CreateServiceUseCase {
   async execute({
     id,
     user_id,
+    name,
+    description,
     manufacturer,
     endpoint,
     username,
     password,
   }: ICreateServiceDTO): Promise<void> {
-    const serviceAlreadyExists = await this.servicesRepository.findById(id);
+    const serviceAlreadyExists = await this.servicesRepository.findById(id!);
     if (serviceAlreadyExists) {
       throw new AppError('Service already in use!', 401);
     }
+
     this.servicesRepository.create({
       id,
       user_id,
+      name,
+      description,
       manufacturer,
       endpoint,
       username,

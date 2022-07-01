@@ -12,6 +12,8 @@ class ServicesRepository implements IServicesRepository {
   async create({
     id,
     user_id,
+    name,
+    description,
     manufacturer,
     endpoint,
     username,
@@ -20,6 +22,8 @@ class ServicesRepository implements IServicesRepository {
     const user = this.repository.create({
       id,
       user_id,
+      name,
+      description,
       manufacturer,
       endpoint,
       username,
@@ -28,11 +32,9 @@ class ServicesRepository implements IServicesRepository {
 
     await this.repository.save(user);
   }
+
   async findById(id: string): Promise<Service | null> {
-    const user =
-      id !== (undefined || null)
-        ? await this.repository.findOneBy({ id })
-        : null;
+    const user = await this.repository.findOneBy({ id });
     return user;
   }
 }

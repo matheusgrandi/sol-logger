@@ -1,5 +1,6 @@
-import { Repository } from 'typeorm';
+import { Repository, SimpleConsoleLogger } from 'typeorm';
 import { dataSource } from '../../../../database';
+import { AppError } from '../../../../errors/AppError';
 import { ICreateServiceDTO } from '../../dtos/ICreateServiceDTO';
 import { Service } from '../../entities/Service';
 import { IServicesRepository } from '../IServicesRepository';

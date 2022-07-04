@@ -26,7 +26,7 @@ class CreateServiceUseCase {
       throw new AppError('Service already in use!', 401);
     }
 
-    this.servicesRepository.create({
+    await this.servicesRepository.create({
       id,
       user_id,
       name,

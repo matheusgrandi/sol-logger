@@ -23,10 +23,9 @@ class CreateServiceController {
         username,
         password,
       });
-
       return response.status(201).send();
     } catch (err) {
-      return response.status(400);
+      return response.status(400).json(err.message);
     }
   }
 }

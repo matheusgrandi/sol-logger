@@ -26,7 +26,11 @@ class NodesRepository implements INodesRepository {
 
     await this.repository.save(node);
   }
-  findById(id: string): Promise<Node | null> {
-    throw new Error('Method not implemented.');
+  async findById(id: string): Promise<Node | null> {
+    const node =
+      id !== (null || undefined)
+        ? await this.repository.findOneBy({ id })
+        : null;
+    return node;
   }
 }

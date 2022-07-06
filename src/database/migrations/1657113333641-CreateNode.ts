@@ -30,6 +30,12 @@ export class CreateNode1657113333641 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'status',
+            type: 'enum',
+            enum: ['on', 'fault', 'off'],
+            default: `'on`,
+          },
+          {
             name: 'last_run',
             type: 'timestamp',
             isNullable: true,

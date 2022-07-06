@@ -28,9 +28,6 @@ class Service {
   password: string;
 
   @Column()
-  is_active: boolean;
-
-  @Column()
   status: string;
 
   @CreateDateColumn()

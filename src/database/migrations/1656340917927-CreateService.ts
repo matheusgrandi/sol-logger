@@ -42,14 +42,10 @@ export class CreateService1656340917927 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'is_active',
-            type: 'boolean',
-            default: 'true',
-          },
-          {
             name: 'status',
-            type: 'varchar',
-            default: `'Setting up account data'`,
+            type: 'enum',
+            enum: ['on', 'fault', 'off'],
+            default: `'on`,
           },
           {
             name: 'created_at',

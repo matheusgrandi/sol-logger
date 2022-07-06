@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import { User } from '../modules/accounts/entities/User';
-import { Service } from '../modules/services/entities/Service';
+import { Node } from '../modules/equipments/entities/Node';
+import { Service } from '../modules/equipments/entities/Service';
 
 //docker-compose exec app node --require ts-node/register ./node_modules/typeorm/cli.js migration:run -d src/database
 //yarn typeorm migration:create src/database/migrations/MigrationName
@@ -12,7 +13,7 @@ const dataSource = new DataSource({
   username: 'admin',
   password: 'admin',
   database: 'huxx_logger',
-  entities: [User, Service],
+  entities: [User, Service, Node],
   migrations: ['src/database/migrations/*.ts'],
 });
 

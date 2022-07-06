@@ -44,12 +44,12 @@ export class CreateService1656340917927 implements MigrationInterface {
           {
             name: 'is_active',
             type: 'boolean',
-            default: true,
+            default: 'true',
           },
           {
             name: 'status',
             type: 'varchar',
-            default: 'Setting up account data',
+            default: `'Setting up account data'`,
           },
           {
             name: 'created_at',

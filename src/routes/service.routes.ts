@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
-import { CreateServiceController } from '../modules/services/useCases/createService/CreateServiceController';
+import { CreateServiceController } from '../modules/equipments/useCases/createService/CreateServiceController';
 
 const serviceRoutes = Router();
 serviceRoutes.use(ensureAuthenticated);

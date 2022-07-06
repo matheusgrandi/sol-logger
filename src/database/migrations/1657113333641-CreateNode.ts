@@ -16,17 +16,17 @@ export class CreateNode1657113333641 implements MigrationInterface {
             type: 'uuid',
           },
           {
-            name: 'drive_id',
-            type: 'uuid',
+            name: 'inverter_id',
+            type: 'varchar',
           },
           {
             name: 'name',
-            type: 'string',
-            default: 'Loading drive data',
+            type: 'varchar',
+            default: `'loading inverter data'`,
           },
           {
             name: 'description',
-            type: 'string',
+            type: 'varchar',
             isNullable: true,
           },
           {
@@ -45,6 +45,6 @@ export class CreateNode1657113333641 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.dropTable('nodes');
+    await queryRunner.dropTable('nodes');
   }
 }

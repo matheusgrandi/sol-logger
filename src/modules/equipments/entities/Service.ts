@@ -34,9 +34,6 @@ class Service {
   status: string;
 
   @CreateDateColumn()
-  last_run?: string;
-
-  @CreateDateColumn()
   created_at: Date;
 
   constructor() {

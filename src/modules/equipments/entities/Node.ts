@@ -19,7 +19,7 @@ class Node {
   status: string;
 
   @CreateDateColumn()
-  last_run: Date;
+  last_run?: Date;
 
   @CreateDateColumn()
   created_at: Date;

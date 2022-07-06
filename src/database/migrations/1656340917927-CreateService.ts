@@ -22,10 +22,12 @@ export class CreateService1656340917927 implements MigrationInterface {
           {
             name: 'description',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'manufacturer',
-            type: 'varchar',
+            type: 'enum',
+            enum: ['omnik', 'solarman', 'solis', 'chint'],
           },
           {
             name: 'endpoint',
@@ -42,14 +44,12 @@ export class CreateService1656340917927 implements MigrationInterface {
           {
             name: 'is_active',
             type: 'boolean',
+            default: true,
           },
           {
             name: 'status',
             type: 'varchar',
-          },
-          {
-            name: 'last_run',
-            type: 'timestamp',
+            default: 'Setting up account data',
           },
           {
             name: 'created_at',

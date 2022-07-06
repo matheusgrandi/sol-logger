@@ -1,8 +1,9 @@
+import { ICreateNodeDTO } from '../dtos/ICreateNodeDTO';
 import { Node } from '../entities/Node';
 
 interface INodesRepository {
-  create(id: string): Promise<void>;
-  findById(id: string): Promise<Node>;
+  create(data: ICreateNodeDTO): Promise<void>;
+  findById(id: string): Promise<Node | null>;
 }
 
 export { INodesRepository };

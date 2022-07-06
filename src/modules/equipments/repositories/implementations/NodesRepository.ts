@@ -1,5 +1,6 @@
 import { Repository } from 'typeorm';
 import { dataSource } from '../../../../database';
+import { ICreateNodeDTO } from '../../dtos/ICreateNodeDTO';
 import { Node } from '../../entities/Node';
 import { INodesRepository } from '../INodesRepository';
 
@@ -8,10 +9,24 @@ class NodesRepository implements INodesRepository {
   constructor() {
     this.repository = dataSource.getRepository(Node);
   }
-  create(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+  async create({
+    id,
+    service_id,
+    inverter_id,
+    name,
+    description,
+  }: ICreateNodeDTO): Promise<void> {
+    const node = this.repository.create({
+      id,
+      service_id,
+      inverter_id,
+      name,
+      description,
+    });
+
+    await this.repository.save(node);
   }
-  findById(id: string): Promise<Node> {
+  findById(id: string): Promise<Node | null> {
     throw new Error('Method not implemented.');
   }
 }

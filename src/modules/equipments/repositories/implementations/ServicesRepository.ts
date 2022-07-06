@@ -35,8 +35,11 @@ class ServicesRepository implements IServicesRepository {
   }
 
   async findById(id: string): Promise<Service | null> {
-    const user = await this.repository.findOneBy({ id });
-    return user;
+    const service =
+      id !== (null || undefined)
+        ? await this.repository.findOneBy({ id })
+        : null;
+    return service;
   }
 }
 

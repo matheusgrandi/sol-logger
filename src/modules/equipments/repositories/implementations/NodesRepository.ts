@@ -12,6 +12,7 @@ class NodesRepository implements INodesRepository {
   }
   async create({
     id,
+    user_id,
     service_id,
     inverter_id,
     name,
@@ -19,6 +20,7 @@ class NodesRepository implements INodesRepository {
   }: ICreateNodeDTO): Promise<void> {
     const node = this.repository.create({
       id,
+      user_id,
       service_id,
       inverter_id,
       name,

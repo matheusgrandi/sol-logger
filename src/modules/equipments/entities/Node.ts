@@ -7,6 +7,9 @@ class Node {
   id?: string;
 
   @Column()
+  user_id: string;
+
+  @Column()
   service_id: string;
 
   @Column()

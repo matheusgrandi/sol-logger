@@ -1,3 +1,4 @@
+import { identitytoolkit } from 'googleapis/build/src/apis/identitytoolkit';
 import { Repository } from 'typeorm';
 import { dataSource } from '../../../../database';
 import { ICreateNodeDTO } from '../../dtos/ICreateNodeDTO';
@@ -33,4 +34,24 @@ class NodesRepository implements INodesRepository {
         : null;
     return node;
   }
+
+  async findByName(name: string): Promise<Node | null> {
+    const node =
+      name !== (null || undefined)
+        ? await this.repository.findOneBy({ name })
+        : null;
+    return node;
+  }
+
+  async listByUser(id: string): Promise<Node[]> {
+    const nodes = await this.repository.find({ where: { user_id: id } });
+    return nodes;
+  }
+
+  async listByService(id: string): Promise<Node[]> {
+    const nodes = await this.repository.find({ where: { service_id: id } });
+    return nodes;
+  }
 }
+
+export { NodesRepository };

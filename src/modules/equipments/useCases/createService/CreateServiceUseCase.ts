@@ -26,6 +26,11 @@ class CreateServiceUseCase {
       throw new AppError('Service already in use!', 401);
     }
 
+    const nameAlreadyInUse = await this.servicesRepository.findByName(name);
+    if (nameAlreadyInUse) {
+      throw new AppError('Name already in use!', 401);
+    }
+
     await this.servicesRepository.create({
       id,
       user_id,

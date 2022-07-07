@@ -33,6 +33,14 @@ class ServicesRepository implements IServicesRepository {
     await this.repository.save(user);
   }
 
+  async findByName(name: string): Promise<Service | null> {
+    const service =
+      name !== (null || undefined)
+        ? await this.repository.findOneBy({ name })
+        : null;
+    return service;
+  }
+
   async findById(id: string): Promise<Service | null> {
     const service =
       id !== (null || undefined)

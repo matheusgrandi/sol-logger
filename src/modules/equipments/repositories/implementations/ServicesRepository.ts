@@ -1,6 +1,5 @@
-import { Repository, SimpleConsoleLogger } from 'typeorm';
+import { Repository } from 'typeorm';
 import { dataSource } from '../../../../database';
-import { AppError } from '../../../../errors/AppError';
 import { ICreateServiceDTO } from '../../dtos/ICreateServiceDTO';
 import { Service } from '../../entities/Service';
 import { IServicesRepository } from '../IServicesRepository';
@@ -40,6 +39,15 @@ class ServicesRepository implements IServicesRepository {
         ? await this.repository.findOneBy({ id })
         : null;
     return service;
+  }
+
+  async listByUserId(id: string): Promise<Service[]> {
+    const services = await this.repository.find({
+      where: {
+        user_id: id,
+      },
+    });
+    return services;
   }
 }
 

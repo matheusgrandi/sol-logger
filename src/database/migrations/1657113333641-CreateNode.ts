@@ -33,7 +33,7 @@ export class CreateNode1657113333641 implements MigrationInterface {
             name: 'status',
             type: 'enum',
             enum: ['on', 'fault', 'off'],
-            default: `'on`,
+            default: `'on'`,
           },
           {
             name: 'last_run',

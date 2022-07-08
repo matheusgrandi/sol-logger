@@ -37,10 +37,22 @@ class NodesRepository implements INodesRepository {
     return node;
   }
 
-  async findByName(name: string): Promise<Node | null> {
+  async findByInverterId(
+    service_id: string,
+    inverter_id: string
+  ): Promise<Node | null> {
     const node =
-      name !== (null || undefined)
-        ? await this.repository.findOneBy({ name })
+      service_id || inverter_id !== (null || undefined)
+        ? await this.repository.findOneBy({ service_id, inverter_id })
+        : null;
+
+    return node;
+  }
+
+  async findByName(name: string, user_id: string): Promise<Node | null> {
+    const node =
+      name || user_id !== (null || undefined)
+        ? await this.repository.findOneBy({ name, user_id })
         : null;
     return node;
   }

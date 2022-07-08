@@ -19,7 +19,10 @@ class CreateServiceUseCase {
     username,
     password,
   }: ICreateServiceDTO): Promise<void> {
-    const nameAlreadyInUse = await this.servicesRepository.findByName(name);
+    const nameAlreadyInUse = await this.servicesRepository.findByName(
+      name,
+      user_id
+    );
     if (nameAlreadyInUse) {
       throw new AppError('Name already in use!', 401);
     }

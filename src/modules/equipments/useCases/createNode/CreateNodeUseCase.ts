@@ -9,18 +9,12 @@ class CreateNodeUseCase {
     @inject('NodesRepository') private nodesRepository: INodesRepository
   ) {}
   async execute({
-    id,
     user_id,
     service_id,
     inverter_id,
     name,
     description,
   }: ICreateNodeDTO): Promise<void> {
-    const nodeAlreadyExists = await this.nodesRepository.findById(id!);
-    if (nodeAlreadyExists) {
-      throw new AppError('Node already exists!', 401);
-    }
-
     const nameAlreadyInUse = await this.nodesRepository.findByName(name);
     if (nameAlreadyInUse) {
       throw new AppError('Node name already in use!', 401);

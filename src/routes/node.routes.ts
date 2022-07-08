@@ -8,3 +8,5 @@ nodeRoute.use(ensureAuthenticated);
 const createNodeController = new CreateNodeController();
 
 nodeRoute.post('/', createNodeController.handle);
+
+export { nodeRoute };

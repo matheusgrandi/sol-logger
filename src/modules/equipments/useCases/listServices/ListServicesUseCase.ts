@@ -2,6 +2,17 @@ import { inject, injectable } from 'tsyringe';
 import { Service } from '../../entities/Service';
 import { IServicesRepository } from '../../repositories/IServicesRepository';
 
+interface IResponseDTO {
+  id?: string;
+  user_id: string;
+  description?: string | null;
+  manufacturer: string;
+  endpoint: string;
+  username: string;
+  status: string;
+  created_at: Date;
+}
+
 @injectable()
 class ListServicesUseCase {
   constructor(
@@ -9,9 +20,11 @@ class ListServicesUseCase {
     private servicesRepository: IServicesRepository
   ) {}
 
-  async execute(user_id: string): Promise<Service[]> {
+  async execute(user_id: string): Promise<IResponseDTO[]> {
     const services = await this.servicesRepository.listByUserId(user_id);
-    return services;
+    const filteredService = services.map(({ password, ...rest }) => rest);
+    console.log(filteredService);
+    return filteredService;
   }
 }
 

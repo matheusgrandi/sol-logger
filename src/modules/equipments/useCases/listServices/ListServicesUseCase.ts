@@ -1,5 +1,4 @@
 import { inject, injectable } from 'tsyringe';
-import { Service } from '../../entities/Service';
 import { IServicesRepository } from '../../repositories/IServicesRepository';
 
 interface IResponseDTO {

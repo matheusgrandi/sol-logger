@@ -9,7 +9,7 @@ class ListServicesController {
 
     const services = await listServicesUseCase.execute(user_id);
 
-    return response.status(201).json(services);
+    return response.status(200).json(services);
   }
 }
 

@@ -1,4 +1,3 @@
-import { identitytoolkit } from 'googleapis/build/src/apis/identitytoolkit';
 import { Repository } from 'typeorm';
 import { dataSource } from '../../../../database';
 import { ICreateNodeDTO } from '../../dtos/ICreateNodeDTO';

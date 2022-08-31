@@ -8,11 +8,12 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "ts-node-dev --inspect=0.0.0.0:9229 --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+    "test": "jest"
   },
   "private": false,
   "dependencies": {
-    "@types/jest": "^27.4.0",
+    "@types/jest": "^29.0.0",
     "@types/node": "^17.0.33",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
@@ -51,7 +52,9 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^29.0.1",
     "prettier": "^2.5.1",
+    "ts-jest": "^28.0.8",
     "ts-node-dev": "^1.1.8"
   }
 }

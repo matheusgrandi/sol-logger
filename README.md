@@ -19,7 +19,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -60,8 +59,6 @@
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
-
-![product-screenshot]
 
 This project have the goal to centralize inverter's data from many different manufactures, crawling and displaying relevant informations on dashboards.
 
@@ -153,8 +150,6 @@ Project Link: [https://github.com/matheusgrandi/sol-logger](https://github.com/m
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

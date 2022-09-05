@@ -1,5 +1,5 @@
+import { IServicesRepository } from '@modules/equipments/repositories/IServicesRepository';
 import { inject, injectable } from 'tsyringe';
-import { IServicesRepository } from '../../repositories/IServicesRepository';
 
 interface IResponseDTO {
   id?: string;

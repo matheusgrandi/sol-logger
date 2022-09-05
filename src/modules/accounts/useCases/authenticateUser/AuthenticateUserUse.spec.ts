@@ -17,7 +17,6 @@ describe('Authenticate user', () => {
     createUserUseCase = new CreateUserUseCase(usersRepositoryInMemomy);
   });
   it('should be able to authenticate an user', async () => {
-    // Mock a user
     const user: ICreateUserDTO = {
       name: 'User name test',
       email: 'test@test.com',
@@ -26,8 +25,6 @@ describe('Authenticate user', () => {
     };
 
     await createUserUseCase.execute(user);
-
-    // Authenticate user
 
     const result = await authenticateUserUseCase.execute({
       email: user.email,

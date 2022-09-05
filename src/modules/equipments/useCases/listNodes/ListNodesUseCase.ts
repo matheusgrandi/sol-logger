@@ -1,6 +1,6 @@
+import { INodesRepository } from '@modules/equipments/repositories/INodesRepository';
+import { Node } from '@modules/equipments/entities/Node';
 import { inject, injectable } from 'tsyringe';
-import { Node } from '../../entities/Node';
-import { INodesRepository } from '../../repositories/INodesRepository';
 
 @injectable()
 class ListNodesUseCase {

@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
-import { AppError } from '../../../../errors/AppError';
-import { ICreateServiceDTO } from '../../dtos/ICreateServiceDTO';
-import { IServicesRepository } from '../../repositories/IServicesRepository';
+import { AppError } from '@errors/AppError';
+import { IServicesRepository } from '@modules/equipments/repositories/IServicesRepository';
+import { ICreateServiceDTO } from '@modules/equipments/dtos/ICreateServiceDTO';
 
 @injectable()
 class CreateServiceUseCase {

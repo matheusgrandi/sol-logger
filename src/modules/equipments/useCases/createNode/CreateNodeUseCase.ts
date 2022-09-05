@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe';
-import { AppError } from '../../../../errors/AppError';
-import { ICreateNodeDTO } from '../../dtos/ICreateNodeDTO';
+import { AppError } from '@errors/AppError';
 import { INodesRepository } from '../../repositories/INodesRepository';
 import { IServicesRepository } from '../../repositories/IServicesRepository';
+import { ICreateNodeDTO } from '@modules/equipments/dtos/ICreateNodeDTO';
 
 @injectable()
 class CreateNodeUseCase {

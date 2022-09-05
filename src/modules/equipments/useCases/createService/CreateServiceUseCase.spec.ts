@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { AppError } from '../../../../errors/AppError';
+import { AppError } from '@errors/AppError';
 import { ServicesRepositoryInMemory } from '../../repositories/in-memory/ServiceRepositoryInMemory';
 import { CreateServiceUseCase } from './CreateServiceUseCase';
 

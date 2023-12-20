@@ -79,43 +79,6 @@ List of available manufactures:
 
 <!-- GETTING STARTED -->
 
-## Getting Started
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/matheusgrandi/sol-logger.git
-   ```
-2. Install PIP packages
-   ```sh
-   pip install -r requirements.txt
-   ```
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- USAGE EXAMPLES -->
-
-## Usage
-
-On the script root folder run the following command line to start the app
-
-```sh
-python main.py
-```
-
-Use the menu to acess the functions.
-
-Obs.: When sending data, write it's hexadecimal value in the folowwing format: 0xff
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-See the [open issues](https://github.com/matheusgrandi/sol-logger/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- CONTRIBUTING -->
-
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
